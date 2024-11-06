@@ -8,7 +8,7 @@ class Ministry extends Model
 {
     protected $fillable = ['name', 'society'];
 
-    public function people()
+    public function peoples()
     {
         return $this->belongsToMany(Person::class, 'charges');
     }

@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+
 class PersonResource extends Resource
 {
     protected static ?string $model = Person::class;
@@ -215,11 +217,11 @@ class PersonResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Nombre'),
+                    ->label('Nombre')
+                    ->searchable(),
                 TextColumn::make('last_name')
-                    ->label('Apellido'),
-                TextColumn::make('email')
-                    ->label('Correo Electrónico'),
+                    ->label('Apellido')
+                    ->searchable(),
                 TextColumn::make('phone')
                     ->label('Teléfono'),
                 TextColumn::make('address')
@@ -239,7 +241,18 @@ class PersonResource extends Resource
 
             ])
             ->filters([
-                //
+                SelectFilter::make('assistant')
+                    ->label('Asistente')
+                    ->options([
+                        '1' => 'Sí',
+                        '0' => 'No',
+                    ]),
+                SelectFilter::make('member')
+                    ->label('Miembro')
+                    ->options([
+                        '1' => 'Sí',
+                        '0' => 'No',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -254,7 +267,8 @@ class PersonResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ChargeRelationManager::class,
+            RelationManagers\AnnotationsRelationManager::class,
         ];
     }
 

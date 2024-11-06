@@ -65,7 +65,7 @@ class MinistryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PeopleRelationManager::class,
         ];
     }
 

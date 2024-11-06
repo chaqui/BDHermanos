@@ -44,4 +44,9 @@ class Person extends Model
     {
         return $this->belongsTo(Person::class, 'spouse_id');
     }
+
+    public function charges()
+    {
+        return $this->hasMany(Charge::class);
+    }
 }
