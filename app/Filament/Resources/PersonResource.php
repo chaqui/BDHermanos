@@ -269,6 +269,7 @@ class PersonResource extends Resource
         return [
             RelationManagers\ChargeRelationManager::class,
             RelationManagers\AnnotationsRelationManager::class,
+            RelationManagers\EventsRelationManager::class,
         ];
     }
 

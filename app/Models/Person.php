@@ -49,4 +49,9 @@ class Person extends Model
     {
         return $this->hasMany(Charge::class);
     }
+
+    public function events()
+    {
+        return $this->hasMany(PersonEvent::class);
+    }
 }
