@@ -55,7 +55,7 @@ class PersonResource extends Resource
                                 'M' => 'Masculino',
                                 'F' => 'Femenino'
                             ]),
-                        Forms\Components\Datepicker::make('birthday')
+                        Forms\Components\DatePicker::make('birthday')
                             ->label('Fecha de Nacimiento')
                             ->required(),
                     ]),
@@ -157,7 +157,7 @@ class PersonResource extends Resource
                                                 'M' => 'Masculino',
                                                 'F' => 'Femenino'
                                             ]),
-                                        Forms\Components\Datepicker::make('birthday')
+                                        Forms\Components\DatePicker::make('birthday')
                                             ->label('Fecha de Nacimiento')
                                             ->required(),
                                     ])
