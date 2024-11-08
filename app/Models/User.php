@@ -3,11 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -44,5 +45,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+        /**
+         * Determine if the user can access the Filament panel.
+         *
+         * @param \Filament\Panel $panel
+         * @return bool
+         */
+
+    }
+    public function canAccessFilament(): bool
+    {
+        return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
+    }
+
+    public function canAccessPanel(\Filament\Panel $panel): bool
+    {
+        // Implement your logic to determine if the user can access the panel
+        return true; // Example: allow all users to access the panel
     }
 }
